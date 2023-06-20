@@ -9,10 +9,9 @@ cities = [
 params = {
     'lang': 'ru',
 }
-url = 'https://wttr.in/?TnMq'
 
 
-def response(url, cities, params=None):
+def response_weather(cities, params=None):
     for city in cities:
         url = f'https://wttr.in/{city}?TnMq'
         response = requests.get(url=url, params=params)
@@ -20,4 +19,4 @@ def response(url, cities, params=None):
         print(response.text)
 
 
-response(url, cities, params)
+response_weather(cities, params)
