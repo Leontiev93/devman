@@ -7,16 +7,18 @@ cities = [
     'svo'
 ]
 params = {
-    'lang': 'ru',
+    'TnMq': '',
+    'lang': 'ru'
 }
 
 
-def response_weather(cities, params=None):
+def request_the_weather(city, params=None):
+    url = f'https://wttr.in/{city}'
+    response = requests.get(url=url, params=params)
+    response.raise_for_status()
+    return response.text
+
+
+if __name__ == '__main__':
     for city in cities:
-        url = f'https://wttr.in/{city}?TnMq'
-        response = requests.get(url=url, params=params)
-        response.raise_for_status()
-        print(response.text)
-
-
-response_weather(cities, params)
+        print(request_the_weather(city, params))
